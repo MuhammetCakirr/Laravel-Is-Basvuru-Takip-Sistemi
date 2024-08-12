@@ -61,6 +61,17 @@ return [
                 PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'),
             ]) : [],
         ],
+        'mongodb' => [
+            'driver' => 'mongodb',
+            'host' => env('MONGO_DB_HOST', '127.0.0.1'),
+            'port' => env('MONGO_DB_PORT', 27017),
+            'database' => env('MONGO_DB_DATABASE', 'your_database_name'),
+            'username' => env('MONGO_DB_USERNAME', 'your_username'),
+            'password' => env('MONGO_DB_PASSWORD', 'your_password'),
+            'options' => [
+                'database' => env('MONGO_DB_AUTHENTICATION_DATABASE', 'admin'), // auth database (optional)
+            ],
+        ],
 
         'mariadb' => [
             'driver' => 'mariadb',
