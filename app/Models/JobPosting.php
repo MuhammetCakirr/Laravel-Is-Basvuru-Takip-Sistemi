@@ -20,12 +20,12 @@ class JobPosting extends Model
 
     public function user(): HasOne
     {
-        return $this->hasOne(User::class);
+        return $this->hasOne(User::class,'id','user_id');
     }
 
     public function requirements(): HasMany
     {
-        return $this->hasMany(JobRequirement::class);
+        return $this->hasMany(JobRequirement::class,'postId');
     }
 
     public function getId()

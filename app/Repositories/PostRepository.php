@@ -3,6 +3,7 @@
 namespace App\Repositories;
 
 use App\Models\JobPosting;
+use Illuminate\Database\Eloquent\Collection;
 
 class PostRepository
 {
@@ -38,5 +39,15 @@ class PostRepository
 
         return $post;
 
+    }
+
+    public function allPosts(): Collection
+    {
+        return JobPosting::query()->with('user','requirements')->get();
+    }
+
+    public function showPostById(int $postId):JobPosting
+    {
+        return JobPosting::query()->where('id',$postId)->with('user','requirements')->first();
     }
 }

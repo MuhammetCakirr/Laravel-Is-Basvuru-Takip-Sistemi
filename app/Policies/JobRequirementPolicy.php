@@ -46,6 +46,7 @@ class JobRequirementPolicy
      */
     public function delete(User $user, JobRequirement $jobRequirement): bool
     {
+
         return $user->getId() === $jobRequirement->post->user_id;
     }
 }

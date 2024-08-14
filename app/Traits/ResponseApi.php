@@ -24,6 +24,23 @@ trait ResponseApi
     }
 
     /**
+     * Returns a successful API response.
+     *
+     * @param  mixed  $data  Response data
+     * @param  string  $modelName  Model Name
+     * @param  string  $operationName  Operation Name
+     * @param  int  $statusCode  HTTP status code
+     */
+    public function successOperationResponse(mixed $data = null, string $modelName,string $operationName, int $statusCode = 200): JsonResponse
+    {
+        return response()->json([
+            'statusCode' => $statusCode,
+            'status' => 'success',
+            'message' => $modelName." has been successfully " . $operationName.".",
+            'data' => $data,
+        ], $statusCode);
+    }
+    /**
      * Returns a failed  API response.
      *
      * @param  string  $message  fail message

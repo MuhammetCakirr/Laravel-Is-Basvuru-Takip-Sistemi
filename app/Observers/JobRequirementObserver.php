@@ -16,6 +16,7 @@ class JobRequirementObserver
             [
                 'post_id' => $requirement->post->id,
                 'user_id' => request()->user()->id,
+                'requirement_id'=>$requirement->getId(),
                 'action' => 'Requirement created.',
                 'detail' => 'User has added the requirement.',
             ]
@@ -29,6 +30,7 @@ class JobRequirementObserver
         JobRequirementHistory::query()->create([
             'post_id' => $requirement->post->id,
             'user_id' => request()->user()->id,
+            'requirement_id'=>$requirement->getId(),
             'action' => 'Requirement updated.',
             'detail' => $details,
         ]);
@@ -39,6 +41,7 @@ class JobRequirementObserver
         JobRequirementHistory::query()->create([
             'post_id' => $requirement->post->id,
             'user_id' => request()->user()->id,
+            'requirement_id'=>$requirement->getId(),
             'action' => 'Requirement deleted.',
             'detail' => 'User has deleted the requirement.',
         ]);

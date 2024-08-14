@@ -21,21 +21,21 @@ class SkillController extends Controller
     {
         $skill = $this->service->create($request);
 
-        return $skill->successResponse($skill, 'Skill has been successfully created.', 200);
+        return $skill->successOperationResponse($skill, 'Skill','created', 200);
     }
 
     public function delete(DeleteSkillRequest $request): JsonResponse
     {
         $skill = $this->service->delete($request);
 
-        return $skill->successResponse($skill, 'Skill has been successfully deleted.', 200);
+        return $skill->successOperationResponse($skill, 'Skill.','deleted', 200);
     }
 
     public function update(UpdateSkillRequest $request): JsonResponse
     {
         $skill = $this->service->update($request);
 
-        return $skill->successResponse($skill, 'Skill has been successfully updated.', 200);
+        return $skill->successOperationResponse($skill, 'Skill','updated', 200);
 
     }
 }

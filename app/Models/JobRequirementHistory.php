@@ -11,5 +11,5 @@ class JobRequirementHistory extends Model
 
     protected $table = 'job_requirement_history';
 
-    protected $fillable = ['user_id', 'post_id', 'action', 'detail'];
+    protected $fillable = ['user_id', 'post_id', 'action', 'detail','requirement_id'];
 }

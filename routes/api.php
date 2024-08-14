@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -27,5 +28,21 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('create', [PostController::class, 'create']);
         Route::post('delete', [PostController::class, 'delete']);
         Route::put('update', [PostController::class, 'update']);
+        Route::get('get-all',[PostController::class, 'getAll']);
+        Route::get('get/{id}',[PostController::class, 'getById']);
+    });
+
+    /*Job Requirement Operations*/
+    Route::prefix('job-requirement')->group(function () {
+        Route::post('create', [RequirementController::class, 'create']);
+        Route::post('delete', [RequirementController::class, 'delete']);
+        Route::put('update', [RequirementController::class, 'update']);
+    });
+
+    /*Job Application*/
+    Route::prefix('job-application')->group(function () {
+        Route::post('create', [RequirementController::class, 'create']);
+        Route::post('delete', [RequirementController::class, 'delete']);
+        Route::put('update', [RequirementController::class, 'update']);
     });
 });
