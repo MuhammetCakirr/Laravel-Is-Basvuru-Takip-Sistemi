@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\JobApplicationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RequirementController;
 use App\Http\Controllers\SkillController;
@@ -41,8 +42,21 @@ Route::middleware('auth:sanctum')->group(function () {
 
     /*Job Application*/
     Route::prefix('job-application')->group(function () {
-        Route::post('create', [RequirementController::class, 'create']);
-        Route::post('delete', [RequirementController::class, 'delete']);
-        Route::put('update', [RequirementController::class, 'update']);
+        Route::post('create', [JobApplicationController::class, 'create']);
+        Route::post('delete', [JobApplicationController::class, 'delete']);
+        Route::put('update', [JobApplicationController::class, 'update']);
+    });
+
+    /*My Application and Post*/
+    Route::prefix('my')->group(function () {
+        Route::prefix('application')->group(function (){
+            Route::post('get-all', [JobApplicationController::class, 'getAllMyApplication']);
+            Route::post('get/{id}', [JobApplicationController::class, 'getMyApplicationById']);
+        });
+        Route::prefix('post')->group(function (){
+            Route::post('get-all', [PostController::class, 'getAllMyPost']);
+            Route::post('get/{id}', [PostController::class, 'getMyPostById']);
+        });
+
     });
 });

@@ -7,19 +7,22 @@ use App\Http\Requests\Post\DeletePostRequest;
 use App\Http\Requests\Post\UpdatePostRequest;
 use App\Http\Resources\JobResource;
 use App\Repositories\PostRepository;
-use App\Repositories\RequirementRepository;
 use App\Services\PostService;
 use App\Traits\ResponseApi;
+
 use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
     public PostService $service;
+    public PostRepository $repository;
     use ResponseApi;
 
     public function __construct()
     {
-        $this->service = new PostService;
+        $this->service = new PostService();
+        $this->repository=new PostRepository();
     }
 
     public function create(CreatePostRequest $request): JsonResponse
@@ -46,17 +49,27 @@ class PostController extends Controller
 
     public function getAll():JsonResponse
     {
-        $repository=new PostRepository();
-        $posts = $repository->allPosts();
-
+        $posts = $this->repository->allPosts();
         return $this->successResponse(JobResource::collection($posts),"All job postings have been brought.",200);
     }
 
 
     public function getById(int $id):JsonResponse
     {
-        $repository=new PostRepository();
-        $post= $repository->showPostById($id);
+        $post= $this->repository->showPostById($id);
         return $this->successResponse(JobResource::make($post),"job post have been brought.",200);
     }
+
+    public function getAllMyPost(Request $request): JsonResponse
+    {
+        $posts= $this->repository->getAllMyPosts($request->user()->id);
+        return $this->successResponse(JobResource::collection($posts),"All your post have been brought.",200);
+    }
+
+//    public function getMyPostById(int $id)
+//    {
+//
+//    }
+
+
 }

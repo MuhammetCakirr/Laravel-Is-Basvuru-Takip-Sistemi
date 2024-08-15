@@ -24,7 +24,10 @@ class JobResource extends JsonResource
             "Ücret (Aylık)"=>number_format($this->resource->price, 0, ',', '.') . " ₺",
             "İlan Tarihi"=>Carbon::parse($this->resource->created_at)->format('l, F j, Y'),
             "İlan Sahibi"=>new UserResource($this->whenLoaded('user')),
-            "Gerekli Yetenekler"=>RequirementResource::collection($this->whenLoaded('requirements'))
+            "Gerekli Yetenekler"=>RequirementResource::collection($this->whenLoaded('requirements')),
+            "Başvurular"=>JobApplicationResource::collection($this->whenLoaded('applications')) ,
+
+
         ];
     }
 }

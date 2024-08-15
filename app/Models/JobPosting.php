@@ -16,7 +16,7 @@ class JobPosting extends Model
 
     protected $table = 'job_posting';
 
-    protected $fillable = ['user_id', 'post_title', 'post_description', 'job_title', 'location', 'type_of_work', 'price'];
+    protected $fillable = ['user_id', 'post_title', 'post_description', 'job_title', 'location', 'type_of_work', 'price','post_status_id'];
 
     public function user(): HasOne
     {
@@ -26,6 +26,15 @@ class JobPosting extends Model
     public function requirements(): HasMany
     {
         return $this->hasMany(JobRequirement::class,'postId');
+    }
+
+    public function applications(): HasMany
+    {
+        return $this->hasMany(JobApplication::class,'job_posting_id','id');
+    }
+    public function status(): HasOne
+    {
+        return $this->hasOne(PostStatus::class,'id','post_status_id');
     }
 
     public function getId()
