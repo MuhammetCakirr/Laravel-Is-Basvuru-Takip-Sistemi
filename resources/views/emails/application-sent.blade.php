@@ -335,7 +335,7 @@
                                 <p>Başvurun {{ $data['postOwner'] }} tarafından görüntülendi.</p>
                                 <p>En kısa sürede dönüş alman dileğiyle.</p>
                             @elseif($data['operation'] === 'ownerReminder')
-                                <p>Merhaba, {{ $data['postOwner'] }} ,</p>
+                                <p>Merhaba, {{ $data['userName'] }} ,</p>
                                 <p>Sonuçlandırmadığın {{ $data['appCount'] }} başvuru var.</p>
                                 <p>Lütfen en kısa sürede geri dönüş yapınız.</p>
                                 <p>Teşekkürler.</p>

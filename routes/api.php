@@ -13,7 +13,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::post('login', [AuthController::class, 'login']);
-
+Route::post('geridonusyapmayanlar', [PostController::class, 'getUnresponsivePostOwners']);
 Route::middleware('auth:sanctum')->group(function () {
     Route::get('logout', [AuthController::class, 'logout']);
 
@@ -58,6 +58,6 @@ Route::middleware('auth:sanctum')->group(function () {
             Route::post('get/{id}', [PostController::class, 'getMyPostById']);
             Route::post('application', [JobApplicationController::class, 'getApplicationOfMyPost']);
         });
-
     });
+
 });

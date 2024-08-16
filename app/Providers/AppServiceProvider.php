@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Events\OwnerReminderMail;
+use App\Listeners\SendOwnerNotification;
 use App\Models\JobApplication;
 use App\Models\JobPosting;
 use App\Models\JobRequirement;
@@ -16,6 +18,7 @@ use App\Policies\JobApplicationPolicy;
 use App\Policies\JobRequirementPolicy;
 use App\Policies\PostPolicy;
 use App\Policies\SkillPolicy;
+use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 
@@ -41,6 +44,11 @@ class AppServiceProvider extends ServiceProvider
         Gate::policy(JobPosting::class, PostPolicy::class);
         Gate::policy(JobRequirement::class, JobRequirementPolicy::class);
         Gate::policy(JobApplication::class,JobApplicationPolicy::class);
+
+        Event::listen(
+            OwnerReminderMail::class,
+            SendOwnerNotification::class,
+        );
 
     }
 }
