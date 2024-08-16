@@ -66,10 +66,10 @@ class PostController extends Controller
         return $this->successResponse(JobResource::collection($posts),"All your post have been brought.",200);
     }
 
-//    public function getMyPostById(int $id)
-//    {
-//
-//    }
+    public function getApplicationOfMyPost(int $postId,int $applicationId)
+    {
+        $posts= $this->repository->getAllMyPosts($request->user()->id);
+    }
 
 
 }

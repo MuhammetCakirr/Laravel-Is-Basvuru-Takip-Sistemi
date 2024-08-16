@@ -56,6 +56,7 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::prefix('post')->group(function (){
             Route::post('get-all', [PostController::class, 'getAllMyPost']);
             Route::post('get/{id}', [PostController::class, 'getMyPostById']);
+            Route::post('application', [JobApplicationController::class, 'getApplicationOfMyPost']);
         });
 
     });

@@ -19,6 +19,7 @@ class PostRepository
                 'location' => $location,
                 'type_of_work' => $typeOfWork,
                 'price' => $price,
+                'post_status_id'=>1
             ]
         );
     }

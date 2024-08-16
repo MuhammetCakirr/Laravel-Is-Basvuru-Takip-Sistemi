@@ -13,7 +13,7 @@ class JobApplication extends Model
 {
     use HasFactory,ResponseApi,TrackModelChanges,SoftDeletes;
     protected $table ="job_application";
-    protected $fillable=["job_posting_id","user_id","status_id","cover_letter"];
+    protected $fillable=["job_posting_id","user_id","status_id","cover_letter","first_view"];
 
     public function status(): HasOne
     {
